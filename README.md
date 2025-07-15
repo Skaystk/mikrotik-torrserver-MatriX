@@ -39,7 +39,7 @@ $mkdir usb1/tmp              # временная папка для распак
 
 # === Сетевая настройка для контейнеров ===
 # Создаём пару VETH, мост и настраиваем NAT, чтобы контейнеры имели доступ к интернету
-/interface veth add name=veth1 address=172.17.0.2/24 gateway=172.17.0.1  # виртуальный интерфейс
+/interface veth add name=veth1 address=172.17.0.2/24 gateway=172.17.0.1  # виртуальный интерфейс torrserver-MatriX и его ip
 /interface bridge add name=containers                                                     # создаём мост
 /interface bridge port add bridge=containers interface=veth1                              # привязываем veth к мосту
 /ip address add address=172.17.0.1/24 interface=containers                              # даём IP мосту
