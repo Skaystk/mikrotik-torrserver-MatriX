@@ -63,13 +63,13 @@ $mkdir usb1/tmp              # временная папка для распак
 
 # === Добавление и запуск контейнера TorrServer ===
 # Используем локальный TAR, группу монтирований и переменных окружения
-/container add name=TorrServer-MatriX \
-    file=usb1/torrserver-arm64.tar \            # локальный образ из TAR
+/container add name=TorrServer-MatriX-1.41 \
+    file=usb1/torrserver-arm64.tar \             # локальный образ из TAR
     interface=veth1 \                            # подключение к виртуальной сети
     root-dir=usb1/containers/ts-MatriX \         # рабочая директория контейнера
     mounts=cfg,log,torr \                        # алиасы для монтированных папок
-    envlists=tsM \                               # алиас для группы переменных окружения
-    start-on-boot=yes                             # автозапуск при перезагрузке
+    cmd="/bin/sh -c /docker-entrypoint.sh" \     # алиас для группы переменных окружения
+    start-on-boot=yes                            # автозапуск при перезагрузке
 
 # === Запуск контейнера вручную (если необходимо) ===
 /container start TorrServer-MatriX
